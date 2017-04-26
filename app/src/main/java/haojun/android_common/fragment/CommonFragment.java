@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.view.View;
+import android.widget.Toast;
 
 public class CommonFragment extends Fragment {
 
@@ -49,5 +50,9 @@ public class CommonFragment extends Fragment {
         if (pd != null && pd.isShowing()) {
             pd.dismiss();
         }
+    }
+
+    protected void t(String msg) {
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 }
