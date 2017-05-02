@@ -5,7 +5,7 @@ import android.util.Log;
 
 public class LogHelper {
     public static final String TAG = "Android-Common";
-    private static boolean isDebuggable = false;
+    private static boolean isDebuggable = true;
 
     public static void setDebuggable(boolean d) {
         isDebuggable = d;

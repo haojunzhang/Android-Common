@@ -6,6 +6,7 @@ import android.os.Bundle;
 import java.util.List;
 
 import haojun.android_common.R;
+import haojun.android_common.helper.LogHelper;
 import haojun.android_common.model.RepoModel;
 import haojun.android_common.retrofit.GitHubService;
 import retrofit2.Call;
@@ -26,7 +27,9 @@ public class RetrofitActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<RepoModel>> call, Response<List<RepoModel>> response) {
                 List<RepoModel> list = response.body();
-
+                for(RepoModel r : list){
+                    LogHelper.d(r.toString());
+                }
             }
 
             @Override

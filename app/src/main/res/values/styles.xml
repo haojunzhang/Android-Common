@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.TextView" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#FFF</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>

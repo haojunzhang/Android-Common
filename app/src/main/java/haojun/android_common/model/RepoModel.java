@@ -4,17 +4,8 @@ package haojun.android_common.model;
  * Created by haojun on 4/21/17.
  */
 
-public class RepoModel {
-    private int id;
+public class RepoModel extends TestModel {
     private String name;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -22,5 +13,9 @@ public class RepoModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String toString() {
+        return getId() + " " + getName();
     }
 }
