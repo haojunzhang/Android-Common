@@ -3,6 +3,7 @@ package haojun.android_common.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import haojun.android_common.R;
@@ -20,20 +21,19 @@ public class RetrofitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrofit);
 
-        GitHubService service = GitHubService.retrofit.create(GitHubService.class);
-        Call<List<RepoModel>> call = service.getRepoList("haojunzhang");
+        Call<ArrayList<RepoModel>> call = GitHubService.service.getRepoList("haojunzhang");
         // async
-        call.enqueue(new Callback<List<RepoModel>>() {
+        call.enqueue(new Callback<ArrayList<RepoModel>>() {
             @Override
-            public void onResponse(Call<List<RepoModel>> call, Response<List<RepoModel>> response) {
-                List<RepoModel> list = response.body();
+            public void onResponse(Call<ArrayList<RepoModel>> call, Response<ArrayList<RepoModel>> response) {
+                ArrayList<RepoModel> list = response.body();
                 for(RepoModel r : list){
                     LogHelper.d(r.toString());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<RepoModel>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<RepoModel>> call, Throwable t) {
 
             }
         });

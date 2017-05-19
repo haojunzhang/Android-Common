@@ -1,5 +1,6 @@
 package haojun.android_common.retrofit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import haojun.android_common.model.RepoModel;
@@ -16,6 +17,8 @@ public interface GitHubService {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
+    GitHubService service = retrofit.create(GitHubService.class);
+
     @GET("users/{user}/repos")
-    Call<List<RepoModel>> getRepoList(@Path("user") String user);
+    Call<ArrayList<RepoModel>> getRepoList(@Path("user") String user);
 }
