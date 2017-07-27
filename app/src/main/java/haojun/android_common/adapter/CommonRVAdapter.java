@@ -9,12 +9,12 @@ public abstract class CommonRVAdapter extends RecyclerView.Adapter {
 
     private final Context context;
     private final LayoutInflater inflater;
-    private final Resources res;
+    private final Resources resources;
 
     public CommonRVAdapter(Context context) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-        this.res = context.getResources();
+        this.resources = context.getResources();
     }
 
     public Context getContext() {
@@ -26,7 +26,7 @@ public abstract class CommonRVAdapter extends RecyclerView.Adapter {
     }
 
     public Resources getResources() {
-        return res;
+        return resources;
     }
 
     public boolean isBetween(int a, int x, int b){

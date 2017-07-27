@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Android-Common</string>
+
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading</string>
+    <string name="server_error_null">Server Error Null</string>
+    <string name="connect_error">Connect Error</string>
 </resources>
