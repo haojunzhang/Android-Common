@@ -107,44 +107,20 @@ public class BitmapHelper {
 
     public static File bitmap2PNGFile(Context context, Bitmap bitmap) {
         // create a png file to cache dir
-        File f = createFile(context.getCacheDir(), UUID.randomUUID().toString() + ".png");
+        File f = FileHelper.createFile(FileHelper.getPicturesDir(context), UUID.randomUUID().toString() + ".png");
         // convert to array
         byte[] bArr = bitmap2PNGByteArray(bitmap);
         // write to file
-        return writeFile(bArr, f);
+        return FileHelper.writeFile(bArr, f);
     }
 
     public static File bitmap2JPGFile(Context context, Bitmap bitmap) {
         // create a png file to cache dir
-        File f = createFile(context.getCacheDir(), UUID.randomUUID().toString() + ".png");
+        File f = FileHelper.createFile(FileHelper.getPicturesDir(context), UUID.randomUUID().toString() + ".png");
         // convert to array
         byte[] bArr = bitmap2JPGByteArray(bitmap);
         // write to file
-        return writeFile(bArr, f);
-    }
-
-    private static File createFile(File dir, String fileName) {
-        try {
-            File f = new File(dir, fileName);
-            return f.createNewFile() ? f : null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private static File writeFile(byte[] bArr, File file) {
-        try {
-            if (file == null) return null;
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(bArr);
-            fos.flush();
-            fos.close();
-            return file;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return FileHelper.writeFile(bArr, f);
     }
 
 }
