@@ -2,12 +2,14 @@ package haojun.android_common.activity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import haojun.android_common.R;
@@ -102,6 +104,13 @@ public class CommonActivity extends AppCompatActivity {
             intent.putExtras(bundle);
         }
         startActivityForResult(intent, request);
+    }
+
+    protected void hideKeyBoard(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        }
     }
 
     protected void t(int textId) {
