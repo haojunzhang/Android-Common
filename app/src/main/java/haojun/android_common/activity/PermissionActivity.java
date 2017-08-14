@@ -7,13 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
 import haojun.android_common.R;
-import haojun.android_common.helper.LogHelper;
-
 
 public class PermissionActivity extends CommonActivity {
 
     // request
     public static final int PERMISSION = 0;
+
     // permission
     public static final String[] PERMISSIONS = {
             Manifest.permission.CAMERA,
@@ -38,7 +37,6 @@ public class PermissionActivity extends CommonActivity {
         // pass
         openActivity(MainActivity.class);
         finish();
-        LogHelper.d("A");
     }
 
     @Override
@@ -52,6 +50,5 @@ public class PermissionActivity extends CommonActivity {
         }
         openActivity(MainActivity.class);
         finish();
-        LogHelper.d("B");
     }
 }
