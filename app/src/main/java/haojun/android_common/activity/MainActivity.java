@@ -13,12 +13,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        LogHelper.d(getCacheDir().getAbsolutePath());
-        LogHelper.d(getFilesDir().getAbsolutePath());
-        LogHelper.d(getExternalCacheDir().getAbsolutePath());
-        LogHelper.d(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath());
-        LogHelper.d(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath());
-        LogHelper.d(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath());
     }
 }

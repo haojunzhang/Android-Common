@@ -1,13 +1,13 @@
 package haojun.android_common.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class CommonFragment extends Fragment {
 
-    private FragmentActivity activity;
+    private Activity activity;
     private ProgressDialog pd;
 
     @Override
@@ -56,7 +56,12 @@ public class CommonFragment extends Fragment {
     }
 
     protected AlertDialog alertWithItems(String[] items, DialogInterface.OnClickListener click) {
+        return alertWithItems(null, items, click);
+    }
+
+    protected AlertDialog alertWithItems(String title, String[] items, DialogInterface.OnClickListener click) {
         AlertDialog.Builder b = new AlertDialog.Builder(activity);
+        if (title != null) b.setTitle(title);
         b.setItems(items, click);
         return b.show();
     }

@@ -26,6 +26,7 @@ public class PermissionActivity extends CommonActivity {
         checkPermission();
     }
 
+
     private void checkPermission() {
         // check
         for (String permission : PERMISSIONS) {
@@ -42,8 +43,8 @@ public class PermissionActivity extends CommonActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        for (int result:grantResults){
-            if (result != PackageManager.PERMISSION_GRANTED){
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
                 finish();
                 return;
             }

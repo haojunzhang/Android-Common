@@ -1,37 +1,36 @@
-package haojun.android_common.activity;
+package haojun.android_common.fragment;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import haojun.android_common.R;
 import retrofit2.Response;
 
+public class CommonFragmentV4 extends Fragment {
 
-public class CommonActivity extends AppCompatActivity {
-
+    private FragmentActivity activity;
     private ProgressDialog pd;
 
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        setRequestedOrientation(true ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        activity = getActivity();
     }
-
 
     protected AlertDialog alert(int titleId, int messageId, DialogInterface.OnClickListener posi, DialogInterface.OnClickListener nega) {
         return alert(getString(titleId), getString(messageId), posi, nega);
     }
 
     protected AlertDialog alert(String title, String message, DialogInterface.OnClickListener posi, DialogInterface.OnClickListener nega) {
-        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        AlertDialog.Builder b = new AlertDialog.Builder(activity);
         if (title != null) b.setTitle(title);
         if (message != null) b.setMessage(message);
         if (posi != null || nega != null) {
@@ -46,7 +45,7 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     protected AlertDialog alertWithView(String title, View v, DialogInterface.OnClickListener posi, DialogInterface.OnClickListener nega) {
-        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        AlertDialog.Builder b = new AlertDialog.Builder(activity);
         if (title != null) b.setTitle(title);
         b.setView(v);
         if (posi != null || nega != null) {
@@ -61,7 +60,7 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     protected AlertDialog alertWithItems(String title, String[] items, DialogInterface.OnClickListener click) {
-        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        AlertDialog.Builder b = new AlertDialog.Builder(activity);
         if (title != null) b.setTitle(title);
         b.setItems(items, click);
         return b.show();
@@ -73,7 +72,7 @@ public class CommonActivity extends AppCompatActivity {
 
     protected void showLoadingDialog(String message) {
         if (pd == null) {
-            pd = new ProgressDialog(this);
+            pd = new ProgressDialog(activity);
             pd.setIndeterminate(true);
             pd.setCancelable(false);
         }
@@ -92,7 +91,7 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     protected void openActivity(Class activityClass, Bundle bundle) {
-        Intent intent = new Intent(this, activityClass);
+        Intent intent = new Intent(activity, activityClass);
         if (bundle != null) {
             intent.putExtras(bundle);
         }
@@ -104,18 +103,11 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     protected void openActivityForResult(Class activityClass, int request, Bundle bundle) {
-        Intent intent = new Intent(this, activityClass);
+        Intent intent = new Intent(activity, activityClass);
         if (bundle != null) {
             intent.putExtras(bundle);
         }
         startActivityForResult(intent, request);
-    }
-
-    protected void hideKeyBoard(View view) {
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-        }
     }
 
     protected void t(int textId) {
@@ -123,7 +115,7 @@ public class CommonActivity extends AppCompatActivity {
     }
 
     protected void t(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
     }
 
     protected boolean isResponseOK(Response<?> response) {
@@ -137,5 +129,4 @@ public class CommonActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }

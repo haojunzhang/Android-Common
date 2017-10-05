@@ -7,10 +7,6 @@ public class LogHelper {
     public static final String TAG = "Android-Common";
     private static boolean isDebuggable = true;
 
-    public static void setDebuggable(boolean d) {
-        isDebuggable = d;
-    }
-
     public static void d(String msg) {
         d(TAG, msg);
     }

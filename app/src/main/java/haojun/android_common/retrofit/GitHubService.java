@@ -1,13 +1,11 @@
 package haojun.android_common.retrofit;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import haojun.android_common.model.RepoModel;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -36,5 +34,4 @@ public interface GitHubService {
 //
 //    @GET("youbike")
 //    Call<String> getData();
-
 }
