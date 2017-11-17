@@ -25,10 +25,6 @@ public class CommonFragment extends Fragment {
         activity = getActivity();
     }
 
-    protected AlertDialog alert(int titleId, int messageId, DialogInterface.OnClickListener posi, DialogInterface.OnClickListener nega) {
-        return alert(getString(titleId), getString(messageId), posi, nega);
-    }
-
     protected AlertDialog alert(String title, String message, DialogInterface.OnClickListener posi, DialogInterface.OnClickListener nega) {
         AlertDialog.Builder b = new AlertDialog.Builder(activity);
         if (title != null) b.setTitle(title);
