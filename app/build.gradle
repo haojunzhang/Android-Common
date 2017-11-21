@@ -34,7 +34,7 @@ dependencies {
     // retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     // badge
     compile "me.leolin:ShortcutBadger:1.1.18@aar"
 }
