@@ -27,7 +27,7 @@ public class MarqueeHelper {
     public void start() {
         if (!running && !imageResources.isEmpty()) {
             running = true;
-            handler.postDelayed(runnable, UPDATE_TIME);
+            handler.post(runnable);
         }
     }
 
