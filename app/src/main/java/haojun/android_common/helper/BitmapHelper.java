@@ -17,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 public class BitmapHelper {
@@ -67,20 +68,10 @@ public class BitmapHelper {
         return returnedBitmap;
     }
 
-    public static byte[] bitmap2PNGByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        return stream.toByteArray();
-    }
-
     public static byte[] bitmap2JPGByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
-    }
-
-    public static String bitmap2PNGBase64(Bitmap bitmap) {
-        return Base64.encodeToString(bitmap2PNGByteArray(bitmap), Base64.DEFAULT);
     }
 
     public static String bitmap2JPGBase64(Bitmap bitmap) {
@@ -105,19 +96,6 @@ public class BitmapHelper {
         return BitmapFactory.decodeFile(file.getPath());
     }
 
-    public static File bitmap2PNGFile(Context context, Bitmap bitmap, String fileName) {
-        // create a png file to cache dir
-        File f = FileHelper.createFile(FileHelper.getPicturesDir(context), fileName + ".png");
-        // convert to array
-        byte[] bArr = bitmap2PNGByteArray(bitmap);
-        // write to file
-        return FileHelper.writeFile(bArr, f);
-    }
-
-    public static File bitmap2PNGFile(Context context, Bitmap bitmap) {
-        return bitmap2PNGFile(context, bitmap, UUID.randomUUID().toString());
-    }
-
     public static File bitmap2JPGFile(Context context, Bitmap bitmap, String fileName) {
         // create a png file to cache dir
         File f = FileHelper.createFile(FileHelper.getPicturesDir(context), fileName + ".jpg");
@@ -131,4 +109,16 @@ public class BitmapHelper {
         return bitmap2JPGFile(context, bitmap, UUID.randomUUID().toString());
     }
 
+    public static Bitmap getLocalBitmap(Context context, int id) {
+        InputStream is = context.getResources().openRawResource(id);
+        return BitmapFactory.decodeStream(is, null, getBitmapOptions(1));
+    }
+
+    private static BitmapFactory.Options getBitmapOptions(int scale){
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inSampleSize = scale;
+        return options;
+    }
 }
