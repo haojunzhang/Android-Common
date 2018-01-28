@@ -9,6 +9,8 @@ import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class BaseViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private View mItemView;
@@ -42,9 +44,23 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public BaseViewHolder setVectorResource(int viewId, int resId) {
+        ImageView view = getView(viewId);
+        view.setImageResource(resId);
+        return this;
+    }
+
     public BaseViewHolder setImageResource(int viewId, int resId) {
         ImageView view = getView(viewId);
         view.setImageResource(resId);
+        return this;
+    }
+
+    public BaseViewHolder setImageUrl(int viewId, String url) {
+        ImageView view = getView(viewId);
+        Picasso.with(view.getContext())
+                .load(url)
+                .into(view);
         return this;
     }
 
@@ -66,7 +82,6 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-
     public BaseViewHolder setAlpha(int viewId, float value) {
         getView(viewId).setAlpha(value);
         return this;
@@ -82,12 +97,6 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 
         View view = getView(viewId);
         view.setOnClickListener(listener);
-        return this;
-    }
-
-    public BaseViewHolder setOnTouchListener(int viewId, View.OnTouchListener listener) {
-        View view = getView(viewId);
-        view.setOnTouchListener(listener);
         return this;
     }
 
