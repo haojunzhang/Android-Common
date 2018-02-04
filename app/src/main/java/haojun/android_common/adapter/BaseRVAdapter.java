@@ -28,6 +28,10 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseViewHold
         notifyDataSetChanged();
     }
 
+    public List<T> getData(){
+        return list;
+    }
+
     public void addAll(List<T> data) {
         list.addAll(data);
         notifyDataSetChanged();
